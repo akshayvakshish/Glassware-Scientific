@@ -1,0 +1,23 @@
+[
+  {
+    "img": "images/pic01.jpg",
+    "title": "Put something here",
+    "subtitle": "Maybe here as well I think",
+    "desc": "Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.",
+    "sizes": ["Small", "Medium"]
+  },
+  {
+    "img": "images/pic02.jpg",
+    "title": "An interesting title",
+    "subtitle": "This is also an interesting subtitle",
+    "desc": "Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.",
+    "sizes": ["Medium", "Large"]
+  },
+  {
+    "img": "images/pic03.jpg",
+    "title": "Oh, and finally ...",
+    "subtitle": "Here's another intriguing subtitle",
+    "desc": "Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.",
+    "sizes": ["Small", "Large"]
+  }
+]
