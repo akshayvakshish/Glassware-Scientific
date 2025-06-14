@@ -1,23 +1,26 @@
 [
   {
-    "img": "images/pic01.jpg",
-    "title": "Put something here",
+    "img": "https://raw.githubusercontent.com/akshayvakshish/Glassware-Scientific-Assets/main/products/beakers/BVUNEBLU1AMPMEC_1.webp",
+    "title": "Borosil Crysto Wide Glass Bottle 1.0 L w Black Lid",
     "subtitle": "Maybe here as well I think",
     "desc": "Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.",
-    "sizes": ["Small", "Medium"]
+    "sizes": ["Small", "Medium"],
+    "category": "beakers"
   },
   {
-    "img": "images/pic02.jpg",
+    "img": "https://raw.githubusercontent.com/akshayvakshish/Glassware-Scientific-Assets/main/products/flasks/BV65PGWLFLDS2_9.webp",
     "title": "An interesting title",
-    "subtitle": "This is also an interesting subtitle",
+    "subtitle": "This is also an interesting subtitle,This is also an interesting subtitle,This is also an interesting subtitle",
     "desc": "Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.",
-    "sizes": ["Medium", "Large"]
+    "sizes": ["Medium", "Large"],
+    "category": "flasks"
   },
   {
-    "img": "images/pic03.jpg",
+    "img": "https://raw.githubusercontent.com/akshayvakshish/Glassware-Scientific-Assets/main/products/flasks/BN75GL305PO_b.webp",
     "title": "Oh, and finally ...",
     "subtitle": "Here's another intriguing subtitle",
     "desc": "Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.",
-    "sizes": ["Small", "Large"]
+    "sizes": ["Small", "Large"],
+    "category": "bottles"
   }
 ]
