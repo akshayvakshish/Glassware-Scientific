@@ -2834,8 +2834,90 @@ body,
   display: none;
 }
 
+#nav .nav-list button,
+#nav .nav-list a {
+  background: none;
+  border: none;
+  color: #2688dd;
+  font-size: 1em;
+  padding: 0 10px;
+  height: 56px;
+  min-width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+  text-decoration: none;
+  font-family: inherit;
+  transition: background 0.2s, color 0.2s;
+}
+
+#nav .nav-list button:active,
+#nav .nav-list button:focus,
+#nav .nav-list a:active,
+#nav .nav-list a:focus {
+  background: #f0f8ff;
+  color: #155a8a;
+  outline: none;
+}
+#nav .nav-list li.current > button,
+#nav .nav-list li.current > a {
+  color: #2688dd !important;
+  font-weight: 700 !important;
+  position: relative;
+  background: none !important;
+  text-decoration: none !important;
+}
+
+#nav .nav-list li.current > button::after,
+#nav .nav-list li.current > a::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 60%;
+  /* background: #2688dd; */
+  position: absolute;
+  left: 20%;
+  bottom: 8px;
+  border-radius: 2px;
+}
+/* #nav .nav-list .more-dropdown { display: none !important; } */
+  #nav .nav-list > li { display: inline-flex !important; }
+#nav .nav-list li.current > button,
+#nav .nav-list li.current > a {
+  border-top: 3px solid #2688dd !important; /* Blue border on top */
+  color: #2688dd !important;
+  font-weight: 700 !important;
+  background: none !important;
+  text-decoration: none !important;
+}
+
 /* Add to your CSS file or inside a <style> tag */
 @media (max-width: 700px) {
+	#nav .nav-list .more-dropdown.open .dropdown-menu { display: block; }
+#nav .nav-list .more-dropdown button {
+  pointer-events: auto !important;
+}
+	 #nav .nav-list .more-dropdown { display: inline-flex !important; position: relative; }
+  #nav .nav-list .dropdown-menu {
+    display: block !important;;
+    position: absolute;
+    bottom: 56px;
+    left: 0;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 6px;
+    min-width: 120px;
+    z-index: 20001;
+  }
+  #nav .nav-list .more-dropdown.open .dropdown-menu { display: block; }
+  /* Optionally hide extra categories on mobile if you want only in dropdown */
+  /* Example: hide all after the 4th item (adjust as needed) */
+  /* #nav .nav-list > li:not(:nth-child(-n+5)):not(.more-dropdown):not(.cart-nav) { display: none !important; } */
 	#banner-wrapper {
     margin-top: 54px !important; /* Adjust value as needed */
   }
@@ -3010,6 +3092,42 @@ body,
     margin-top: 0em !important; /* Move just the buttons/number up */
   }
 
+  #nav .nav-list button {
+	font-size: 0.95em !important;
+  background: none;
+  border: none;
+  color: #2688dd;
+  font-size: 1em;
+  padding: 0 10px;
+  height: 56px;
+  min-width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+#nav .nav-list li.current > button,
+#nav .nav-list li.current > a {
+  border-top: 3px solid #2688dd !important; /* Blue border on top */
+  color: #2688dd !important;
+  font-weight: 700 !important;
+  background: none !important;
+  text-decoration: none !important;
+}
+
+#nav .nav-list button:active,
+#nav .nav-list button:focus {
+  background: #f0f8ff;
+  color: #155a8a;
+  outline: none;
+}
+
    #nav {
     position: fixed !important;
     left: 0;
@@ -3018,7 +3136,7 @@ body,
     top: auto;
     width: 100vw !important;
     background: #fff;
-    z-index: 10001;
+    z-index: 20000;
     box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
     border-top: 1px solid #e0e0e0;
     display: flex !important;
@@ -3029,6 +3147,10 @@ body,
     height: 56px;
   }
   #nav .nav-list {
+	overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  pointer-events: auto;
     flex: 1 1 auto;
     justify-content: flex-start !important;
     align-items: center;
@@ -3038,6 +3160,9 @@ body,
     background: none;
     height: 100%;
   }
+  #nav .nav-list li, #nav .nav-list a {
+  pointer-events: auto;
+}
   #nav .nav-list li {
     margin: 0 4px !important;
     padding: 0 !important;

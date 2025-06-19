@@ -41,10 +41,27 @@
 </nav>
   <nav id="nav">
   <ul class="nav-list">
-    <li class="current"><a href="index.html">Home</a></li>
-    <li ><a href="#" onclick="filterCategory('beakers')">Beakers</a></li>
-    <li><a href="#" onclick="filterCategory('flasks')">Flasks</a></li>
-    <li><a href="#" onclick="filterCategory('bottles')">Bottles</a></li>
+    <li class="current">
+  <button type="button" onclick="location.href='index.html'" aria-label="Home">
+    <i class="fa fa-home"></i>
+  </button>
+</li>
+    <li ><button type="button" onclick="selectCategory(this,'BEAKERS')">Beakers</button></li>
+    <li><button type="button" onclick="selectCategory(this,'FLASKS')">Flasks</button></li>
+    <li><button type="button" onclick="selectCategory(this,'BOTTLES')">Bottles</button></li>
+	<li><button type="button" onclick="selectCategory(this,'TUBES')">Tubes</button></li>
+
+	<li class="more-dropdown">
+    <button type="button" aria-label="More categories" onclick="toggleDropdown(this)">
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <ul class="dropdown-menu">
+      <li><button type="button" onclick="selectCategory(this,'CYLINDERS')">Cylinders</button></li>
+      <li><button type="button" onclick="selectCategory(this,'PIPETTES')">Pipettes</button></li>
+      <li><button type="button" onclick="selectCategory(this,'FUNNELS')">Funnels</button></li>
+      <!-- Add more as needed -->
+    </ul>
+  </li>
     <li class="cart-nav">
       <span id="open-cart-btn" class="floating-cart-btn" title="Cart">
         <i class="fa fa-shopping-cart"></i>

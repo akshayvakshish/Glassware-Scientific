@@ -225,6 +225,38 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+function selectCategory(btn, category) {
+  // Remove 'current' from all nav items
+  document.querySelectorAll('#nav .nav-list li').forEach(li => li.classList.remove('current'));
+  // Add 'current' to the clicked button's parent <li>
+  btn.parentElement.classList.add('current');
+  // Call your filter function
+  filterCategory(category);
+}
+
+
+window.toggleDropdown = function(btn) {
+  console.log('Toggling dropdown for window:', btn);
+  const li = btn.parentElement;
+  const wasOpen = li.classList.contains('open');
+  // Close all other dropdowns
+  document.querySelectorAll('#nav .more-dropdown.open').forEach(el => el.classList.remove('open'));
+  // Toggle this one
+  if (!wasOpen) {
+    li.classList.add('open');
+    // Use setTimeout to avoid immediate close from the same click
+    setTimeout(() => {
+      function handler(e) {
+        if (!li.contains(e.target)) {
+          li.classList.remove('open');
+          document.removeEventListener('click', handler);
+        }
+      }
+      document.addEventListener('click', handler);
+    }, 0);
+  }
+};
+
 window.filterCategory = function(category) {
     const featuresRow = document.getElementById('features-row');
     featuresRow.innerHTML = '';
@@ -232,50 +264,61 @@ window.filterCategory = function(category) {
         .filter(card => card.category === category)
         .forEach((card, idx) => {
             featuresRow.innerHTML += `
-  <div class="product-card" style="flex: 0 1 160px; min-width: 140px; max-width: 180px; margin: 0 4px 16px 0;">
-    <section class="box feature" style="padding: 0.5em;">
-      <div class="image featured" style="cursor:pointer; height:120px; overflow:hidden; border-radius:8px;" onclick="showProductModal(${idx})">
-        <img src="${card.img}" alt="${card.title}" style="width:100%; height:100%; object-fit:cover; display:block;" />
-      </div>
-      <div class="inner" style="padding: 0.5em 0;">
-        <header>
-          <h2 style="font-size:1em; margin:0 0 0.2em 0;">${card.title}</h2>
-          <p style="font-size:0.85em; margin:0 0 0.5em 0;">
-  ${card.subtitle.length > 10 ? card.subtitle.slice(0, 10) + '...' : card.subtitle}
-</p>
-        </header>
-        <div style="display:flex; align-items:center; justify-content:space-between;">
-          <label style="font-size:0.9em;">
-            <select id="size-${idx}" style="font-size:0.9em;">
-              ${card.sizes.map(size => `<option value="${size}">${size}</option>`).join('')}
-            </select>
-          </label>
-          <div style="display:flex; align-items:center; gap:0;">
-  <button type="button" onclick="decrementQty(${idx})" style="
-    width:22px; height:28px; border:none; background:none; color:#222; font-size:1.2em; cursor:pointer; border-radius:4px 0 0 4px; border:1px solid #ccc; border-right:none; padding:0;">−</button>
-  <span id="qty-val-${idx}" style="
-    width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; border-top:1px solid #ccc; border-bottom:1px solid #ccc; font-size:1em; background:#fafafa;">1</span>
-  <button type="button" onclick="incrementQty(${idx})" style="
-    width:22px; height:28px; border:none; background:none; color:#222; font-size:1.2em; cursor:pointer; border-radius:0 4px 4px 0; border:1px solid #ccc; border-left:none; padding:0;">＋</button>
+  <div class="product-card" style="margin: 0 1.5px 16px 0;">
+  <section class="box feature" style="padding: 0.2em;">
+    <div class="image-featured" style="cursor:pointer;  overflow:hidden;" onclick="showProductModal('${card.productId}')">
+      <img src="${card.img}" alt="${card.title}" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block; border-radius:0;" />
+    </div>
+    <div class="inner" style="padding: 0 0 1em 0; background:#f5f5f5;">
+  <div style="width:100%; margin-bottom:8px; display:flex; justify-content:center;">
+  <select id="size-val-${idx}" style="
+    width:90%;
+    padding:7px 12px;
+    border:1px solid #d1d5db;
+    border-radius:6px;
+    background:#f5f5f5;
+    font-size:1em;
+    color:#222;
+    outline:none;
+    margin:0 auto;
+    display:block;
+  ">
+    ${card.sizes.map(size => `<option value="${size}">${size}</option>`).join('')}
+  </select>
 </div>
-          <button onclick="addToCart(${idx})" title="Add to Cart" style="
-    background: none; 
-    border: none; 
-    border-radius: 50%; 
-    width: 32px; 
-    height: 32px; 
-    color: #222; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 1.2em; 
-    cursor: pointer;">
-  <i class="bi bi-cart" style="font-size:1.4em; color:#222;"></i>
-</button>
-        </div>
+  <div class="card-title-wrap">
+    <h2 class="product-card-title">
+  ${card.title.length > 22 ? card.title.slice(0, 22) + '...' : card.title}
+</h2>
+</header>
+<p style="font-size:0.90em; margin:0; padding:0;">
+  ${card.subtitle.length > 25 ? card.subtitle.slice(0, 25) + '...' : card.subtitle}
+</p>
+    <input type="hidden" id="size-val-${idx}" value="${card.sizes[0]}">
+    <div class="qty-row" style="display:flex; justify-content:center; align-items:center; gap:16px;">
+      <div style="display:flex; align-items:center; gap:0;">
+        <button type="button" onclick="decrementQty(${idx})" class="qty-btn qty-btn-minus">−</button>
+        <span id="qty-val-${idx}" style="
+          width:24px; height:26px; display:inline-flex; align-items:center; justify-content:center; border-top:1px solid #ccc; border-bottom:1px solid #ccc; font-size:1em; background:#fafafa; padding:0; font-weight:400;">1</span>
+        <button type="button" onclick="incrementQty(${idx})" class="qty-btn qty-btn-plus">＋</button>
       </div>
-    </section>
+      <button onclick="addToCart(${idx})" title="Add to Cart" style="
+        background: none; 
+        border: none; 
+        border-radius: 50%; 
+        width: 32px; 
+        height: 32px; 
+        color: #222; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        font-size: 1.2em; 
+        cursor: pointer;">
+        <i class="bi bi-cart" style="font-size:1.4em; color:#222;"></i>
+      </button>
+    </div>
   </div>
+</div>
 `;
         });
 };
