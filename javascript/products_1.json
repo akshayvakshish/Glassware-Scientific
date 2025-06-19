@@ -1,0 +1,218 @@
+[
+  {
+    "product_id": "1000",
+    "category": "BEAKERS",
+    "title": "LOW FORM BEAKER\nWith Spout",
+    "subtitle": "With Spout",
+    "desc": "• Complies with IS 2619 /ISO 3819 and DIN 12331\n• The spout design enables clean and precise pouring\n• Graduated to indicate the approximate content\n• Uniform wall thickness distribution improves mechanical & thermal properties & makes it ideal for heating liquids\n• The easy-to-read scale and large labelling field makes marking easier\n• High resistance to chemical attack",
+    "sizes": ["5","10","25","50","100","150","250","400","500","600","800","1000","2000","3000","5000","10000"]
+  },
+  {
+    "product_id": "1500",
+    "category": "BOTTLES",
+    "title": "REAGENT BOTTLES",
+    "subtitle": "Narrow Mouth With I/C Glass Stopper",
+    "desc": "• Complies with IS 1388 (Part II), ISO 4796 - 2\n• Supplied with solid glass stopper\n• Printed with graduations using a durable white enamel\n• Bottles are mechanically strong and chemical resistant with a sturdy ground neck",
+    "sizes": ["60","100","125","250","500","1000","2000"]
+  },
+  {
+    "product_id": "1501",
+    "category": "BOTTLES",
+    "title": "REAGENT BOTTLES",
+    "subtitle": "Narrow Mouth With Screw Cap",
+    "desc": "• Complies with IS 1388 (Part I), ISO 4796 - 1\n• Supplied with screw caps and pouring ring made of polypropylene,\nautoclavable at 121°C\n• Printed with graduations and retrace code using a durable white enamel\n• 100 ml to 20000 ml Bottles have uniform GL 45 thread\n• Mechanically strong and chemical resistant\n• Ideal for storage of chemicals, reagents, media",
+    "sizes": ["10","25","50","100","150","250","500","1000","2000","3000","5000","10000","20000"]
+  },
+  {
+    "product_id": "1625",
+    "category": "BOTTLES",
+    "title": "RELATIVE DENSITY BOTTLES",
+    "subtitle": "(Pyknometer) With I/C PTFE Stoppper",
+    "desc": "• Supplied with I/C PTFE (Teflon) stopper\n• Complies with IS 5717, DIN / ISO 3507\n• These bottles are mechanically strong and chemical resistant\n• All sizes have a durable matt-finished enamelled area for marking",
+    "sizes": ["10","25","50"]
+  },
+  {
+    "product_id": "1630",
+    "category": "BOTTLES",
+    "title": "WEIGHING BOTTLES",
+    "subtitle": "With I/C Glass Lid",
+    "desc": "• Complies with IS 1574\n• These bottles are mechanically strong and chemical resistant",
+    "sizes": ["5","15","20","25","40","60"]
+  },
+  {
+    "product_id": "1662",
+    "category": "FLASKS",
+    "title": "FLASK FOR GLASS WASH BOTTLE",
+    "subtitle": "with Lid",
+    "desc": "• Made from high-quality, chemically resistant borosilicate glass for durability and safety.\n• Designed specifically as a replacement flask for glass wash bottles.\n• Features clear, easy-to-read graduation markings for accurate measurement.\n• Smooth, uniform wall thickness ensures strength and minimizes breakage risk.\n• Compatible with standard glass wash bottle assemblies and accessories.",
+    "sizes": ["250","500","1000"]
+  },
+  {
+    "product_id": "2122",
+    "category": "BURETTES",
+    "title": "BURETTES",
+    "subtitle": "With Boroflo stopcock, Class B",
+    "desc": "• Complies with IS 1997 / ISO 385, Accuracy as per class B\n• Supplied with Boroflo stopcock\n• No lubrication required\n• Calibrated at 27°C\n• Generally used in titration process",
+    "sizes": ["10","25","50","100"]
+  },
+  {
+    "product_id": "2124",
+    "category": "BURETTES",
+    "title": "BURETTES",
+    "subtitle": "With Glass stopcock, Class B",
+    "desc": "• Complies with IS 1997 / ISO 385, Accuracy as per class B\n• Designed with straight bore stopcock that increases the life, compared to Boroflo\nstopcocks\n• The glass stopcock enhances control and enables smoother action\n• Calibrated at 27°C\n• Generally used in Titration process",
+    "sizes": ["5","10","25","50","100"]
+  },
+  {
+    "product_id": "4100",
+    "category": "FLASKS",
+    "title": "FLAT BOTTOM FLASK",
+    "subtitle": "Narrow Mouth, Short Neck With I/C Joint",
+    "desc": "• Uniform wall thickness distribution makes these Flasks ideal for heating\n• All sizes have a durable matt-finished enamelled area for marking\n• Equipped with interchangeable joint\n• The flat base ensures that the Flask can be placed down even without the\nsupporting ring",
+    "sizes": ["150","250","500","1000","2000","3000","5000"]
+  },
+  {
+    "product_id": "4981",
+    "category": "FLASKS",
+    "title": "ERLENMEYER (CONICAL) FLASK",
+    "subtitle": "Long Neck Without Rim",
+    "desc": "• Complies with IS 1381(Part I), DIN / ISO 1773\n• Uniform wall thickness distribution makes these flasks ideal for heating\n• Long neck designed for cotton plugs and metal caps\n• The conical form makes them suitable for mixing liquids\n• The easy-to-read scale and large labelling field facilitate easy marking\n• Ideal for microbial culture work",
+    "sizes": ["250"]
+  },
+  {
+    "product_id": "4982",
+    "category": "FLASKS",
+    "title": "ERLENMEYER (CONICAL) FLASK",
+    "subtitle": "Without Rim",
+    "desc": "• Complies with IS 1381(Part I), DIN / ISO 1773\n• Uniform wall thickness distribution makes these flasks ideal for heating\n• The conical form makes them suitable for mixing liquids\n• Designed without a rim for use in the shaker machine\n• The easy-to-read scale and large labelling field facilitate easy marking\n• Graduated from 25 ml to 5000 ml",
+    "sizes": ["250"]
+  },
+  {
+    "product_id": "4989",
+    "category": "FLASKS",
+    "title": "ERLENMEYER (CONICAL) FLASK",
+    "subtitle": "Narrow Mouth, With Rim, Amber",
+    "desc": "• Complies with IS 1381 (Part I), DIN / ISO 1773\n• Uniform wall thickness distribution makes these flasks ideal for heating\n• The conical form makes them suitable for mixing liquids\n• The easy-to-read scale and large labelling field facilitate easy marking\n• Graduated from 25 ml to 5000 ml\n• Coloured in Amber to protect light-sensitive material\n• The Amber colour is applied only to the external surface to prevent\ncontamination with the testing material",
+    "sizes": ["100","150","250","500","1000"]
+  },
+  {
+    "product_id": "5019",
+    "category": "FLASKS",
+    "title": "ERLENMEYER (CONICAL) FLASK",
+    "subtitle": "Narrow Mouth, With I/C Joint & Glass Stopper, Amber",
+    "desc": "• Complies with IS 1381 (Part II), DIN / ISO 4797\n• Equipped with interchangeable joints\n• These flasks can be closed with a glass stopper\n• Uniform wall thickness distribution makes these flasks ideal for heating\n• While heating stopper should be removed\n• The conical form makes them suitable for mixing liquids\n• Coloured in Amber to protect light-sensitive material\n• The Amber colour is applied only to the external surface to prevent\ncontamination with the testing material",
+    "sizes": ["25","50","100","250","500"]
+  },
+  {
+    "product_id": "5020",
+    "category": "FLASKS",
+    "title": "ERLENMEYER (CONICAL) FLASK",
+    "subtitle": "Narrow Mouth, With I/C Joint & Glass Stopper",
+    "desc": "• Equipped with interchangeable joints\n• These flasks can be closed with a glass stopper\n• The conical form makes them suitable for mixing of liquid\n• While heating stopper should be removed",
+    "sizes": ["25","50","100","250","500","1000","2000"]
+  },
+  {
+    "product_id": "5021",
+    "category": "FLASKS",
+    "title": "ERLENMEYER (CONICAL) FLASK",
+    "subtitle": "With Screw Cap",
+    "desc": "• Supplied with PP screw cap autoclavable at 121°C\n• The conical form makes them suitable for mixing of liquids",
+    "sizes": ["100","150","250","500","1000","2000","5000"]
+  },
+  {
+    "product_id": "6400",
+    "category": "FUNNEL",
+    "title": "SEPARATING FUNNEL, PEAR SHAPE",
+    "subtitle": "With Glass Stopcock & I/C Glass Stopper",
+    "desc": "• Complies with IS 1575, DIN / ISO 4800\n• Designed with pear shape and with a stem\n• Generally used in the separation phase",
+    "sizes": ["60","125","250","500","1000","2000"]
+  },
+  {
+    "product_id": "6402",
+    "category": "FUNNEL",
+    "title": "SEPARATING FUNNEL, PEAR SHAPE",
+    "subtitle": "With Boroflo Stopcock And I/C Glass Stopper",
+    "desc": "• Complies with IS 1575, DIN / ISO 4800\n• Designed with pear shape and with a stem\n• Generally used in the separation phase",
+    "sizes": ["60","125","250","500","1000","2000"]
+  },
+  {
+    "product_id": "2982",
+    "category": "CYLINDERS",
+    "title": "CYLINDERS",
+    "subtitle": "Class B, Hexagonal Base, with I/C Stopper",
+    "desc": "• Complies with IS 878, ISO 4788\n• Supplied with Interchangeable Penny head Stopper\n• Graduated, Single Metric Scale\n• Graduations in amber enamel\n• Sturdy hexagonal base prevents roll-over and ensures greater stability\n• Calibrated at 27°C",
+    "sizes": ["5","10","25","50","100","250","500","1000","2000"]
+  },
+  {
+    "product_id": "3022",
+    "category": "CYLINDERS",
+    "title": "CYLINDERS",
+    "subtitle": "Class B, Hexagonal base, Pour out",
+    "desc": "• Complies with IS 878, ISO 4788\n• Graduated, Single Metric Scale\n• Certificate of Calibration traceable to national standards\n• Graduations in amber enamel\n• Sturdy hexagonal base prevents roll-over and ensures greater stability\n• Calibrated at 27°C",
+    "sizes": ["5","10","25","50","100","150","250","500","1000","2000"]
+  },
+  {
+    "product_id": "3165",
+    "category": "DISHES",
+    "title": "S LINE PETRI DISHES",
+    "subtitle": "Made of sodalime glass",
+    "desc": "• Made of sodalime glass\n• S-Line petri dishes with durable white enamel printing - with lid\nand bottom mentioned on it\n• Helps in quick identification of the lid and the bottom while sorting and\npairing the petri dishes during use\n• Optically clear and bubble free for making critical observations\n• Flat inner surface for uniform distribution of media\n• Ideal culture vessel for microbiology and plant tissue culture applications",
+    "sizes": ["50 x 12","80 x 15","90 x 15","100 x 15","100 x 20","150 x 25","200 x 30"]
+  },
+  {
+    "product_id": "5640",
+    "category": "FLASKS",
+    "title": "VOLUMETRIC FLASKS",
+    "subtitle": "Class A, Narrow Mouth, Clear, with Individual Calibration Certificate",
+    "desc": "• Complies with DIN / ISO 1042, Accuracy as per class A\n• Supplied with Interchangeable Solid Glass Stopper\n• Each flask is marked with individual serial number and supplied with certificate of calibration traceable to National standards\n• Amber enamel inscriptions\n• Calibrated & certified at 27°C",
+    "sizes": ["1","2","5","10","20","25","50","100","200","250","500","1000","2000","5000"]
+  },
+  {
+    "product_id": "7060",
+    "category": "PIPETTES",
+    "title": "MOHR PIPETTES",
+    "subtitle": "Class B",
+    "desc": "• Complies with IS, ISO 835, Type I\n• Graduated for delivery from zero mark to the last graduation mark\n• Markings are made in permanent amber stain diffused into the surface of the glass for better visibility and durability\n• Calibrated at 27°C",
+    "sizes": ["0.1","0.2","1","2","5","10","25"]
+  },
+  {
+    "product_id": "7102",
+    "category": "PIPETTES",
+    "title": "VOLUMETRIC PIPETTES",
+    "subtitle": "Class B",
+    "desc": "• Complies with ISO 648\n• Calibrated for delivery (TD, Ex)\n• Generally used for accurate measurement and decanting of liquid\n• Calibrated at 27°C",
+    "sizes": ["1","2","3","4","5","6","7","8","9","10","15","20","25","30","40","50","100"]
+  },
+  {
+    "product_id": "9820",
+    "category": "TUBES",
+    "title": "TEST TUBES",
+    "subtitle": "Without Rim",
+    "desc": "• Complies with IS 2618, DIN / ISO 4142\n• Designed with a round bottom and without rim\n• Made thick-walled, mechanically very resistant\n• High thermal shock resistance",
+    "sizes": ["1","3","5","7","8","13","15","12","20","27","25","38","55","70","100","170"]
+  },
+  {
+    "product_id": "9830",
+    "category": "TUBES",
+    "title": "GRADUATED TEST TUBE",
+    "subtitle": "With I/C Glass Stopper",
+    "desc": "• Supplied with interchangeable glass stopper\n• Graduations in amber enamel\n• Made thick-walled, mechanically very resistant\n• High thermal shock resistance\n• These test tubes are graduated for greater precision",
+    "sizes": ["10","15","20","30","50","100"]
+  },
+  {
+    "product_id": "9900",
+    "category": "TUBES",
+    "title": "CULTURE TUBES",
+    "subtitle": "Round Bottom, Clear, With PP Cap",
+    "desc": "• Supplied with polyproplylene cap and PTFE Liner (excpet 150 ml), autoclavable at 121°C\n• Designed with special caps to facilitate handling and sealing\n• The ideal replacement for media culture bottles",
+    "sizes": ["5","10","30","50","60","150"]
+  },
+  {
+    "product_id": "9901",
+    "category": "TUBES",
+    "title": "CULTURE TUBES",
+    "subtitle": "Round Bottom, Amber, With PP Cap",
+    "desc": "• Supplied with polyproplylene cap and PTFE Liner (excpet 150 ml), autoclavable at 121°C\n• The uniform amber colour is highly durable and protects light sensitive media and\nsolutions\n• Designed with special caps to facilitate handling and sealing\n• The ideal replacement for media culture bottles",
+    "sizes": ["5","10","30","60","150"]
+  }
+]

@@ -35,17 +35,19 @@
 
 		// Toggle.
 			$(
-				'<div id="navToggle">' +
-					'<a href="#navPanel" class="toggle"></a>' +
-				'</div>'
+				'<div id="sidebar-toggle">' +
+    '<a href="#navPanel" class="toggle" style="font-size:2em;line-height:1;margin-right: 10px;">' +
+      '<i class="bi bi-person"></i>' +
+    '</a>' +
+  '</div>'
 			)
-				.appendTo($body);
+				.appendTo('#nav-top .nav-top-list');
 
 		// Panel.
 			$(
 				'<div id="navPanel">' +
 					'<nav>' +
-						$('#nav').navList() +
+						$('#side-nav').navList() +
 					'</nav>' +
 				'</div>'
 			)
@@ -61,4 +63,5 @@
 					visibleClass: 'navPanel-visible'
 				});
 
+			
 })(jQuery);

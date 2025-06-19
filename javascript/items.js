@@ -1,13 +1,20 @@
-fetch('javascript/products.json')
+fetch('javascript/app-config.json')
+  .then(response => response.json())
+  .then(config => {
+fetch('javascript/products_1.json')
   .then(response => response.json())
   .then(cards => {
     const featuresRow = document.getElementById('features-row');
     featuresRow.innerHTML = '';
+    cards.forEach(card => {
+      card.img = `${config.baseImageUrl}${card.category}/${card.product_id}.webp`;
+      console.log(`Loaded image for ${card.title}: ${card.img}`);
+    });
     cards.forEach((card, idx) => {
       featuresRow.innerHTML += `
  <div class="product-card" style="margin: 0 1.5px 16px 0;">
-  <section class="box feature" style="padding: 0.5em;">
-    <div class="image featured" style="cursor:pointer; height:220px; overflow:hidden;" onclick="showProductModal(${idx})">
+  <section class="box feature" style="padding: 0.2em;">
+    <div class="image-featured" style="cursor:pointer;  overflow:hidden;" onclick="showProductModal('${card.productId}')">
       <img src="${card.img}" alt="${card.title}" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block; border-radius:0;" />
     </div>
     <div class="inner" style="padding: 0 0 1em 0; background:#f5f5f5;">
@@ -27,8 +34,8 @@ fetch('javascript/products.json')
     ${card.sizes.map(size => `<option value="${size}">${size}</option>`).join('')}
   </select>
 </div>
-  <div style="padding-left: 1em;padding-top: 1em;">
-    <h2 style="font-size:1.20em; font-weight:400; margin:0 0 4px 0; padding:0;">
+  <div class="card-title-wrap">
+    <h2 class="product-card-title">
   ${card.title.length > 22 ? card.title.slice(0, 22) + '...' : card.title}
 </h2>
 </header>
@@ -36,14 +43,12 @@ fetch('javascript/products.json')
   ${card.subtitle.length > 25 ? card.subtitle.slice(0, 25) + '...' : card.subtitle}
 </p>
     <input type="hidden" id="size-val-${idx}" value="${card.sizes[0]}">
-    <div style="display:flex; justify-content:center; align-items:center; gap:16px; margin-top:6px; margin-bottom:2px;">
+    <div class="qty-row" style="display:flex; justify-content:center; align-items:center; gap:16px;">
       <div style="display:flex; align-items:center; gap:0;">
-        <button type="button" onclick="decrementQty(${idx})" style="
-          width:22px; height:26px; border:none; background:none; color:#222; font-size:1.1em; cursor:pointer; border-radius:4px 0 0 4px; border:1px solid #ccc; border-right:none; padding:0; font-weight:400;">−</button>
+        <button type="button" onclick="decrementQty(${idx})" class="qty-btn qty-btn-minus">−</button>
         <span id="qty-val-${idx}" style="
           width:24px; height:26px; display:inline-flex; align-items:center; justify-content:center; border-top:1px solid #ccc; border-bottom:1px solid #ccc; font-size:1em; background:#fafafa; padding:0; font-weight:400;">1</span>
-        <button type="button" onclick="incrementQty(${idx})" style="
-          width:22px; height:26px; border:none; background:none; color:#222; font-size:1.1em; cursor:pointer; border-radius:0 4px 4px 0; border:1px solid #ccc; border-left:none; padding:0; font-weight:400;">＋</button>
+        <button type="button" onclick="incrementQty(${idx})" class="qty-btn qty-btn-plus">＋</button>
       </div>
       <button onclick="addToCart(${idx})" title="Add to Cart" style="
         background: none; 
@@ -65,6 +70,7 @@ fetch('javascript/products.json')
 `;
     });
     window.cards = cards;
+  });
   });
 
     // Store cards globally for addToCart
@@ -103,14 +109,7 @@ function showCart() {
     }
     let msg = cart.map(item => `${item.qty} x ${item.title} (${item.size})`).join('\n');
     alert("Cart:\n" + msg);
-}
 
-function submitCart() {
-    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    if(cart.length === 0) {
-        alert("Cart is empty!");
-        return;
-    }
     // For now, just show the cart. Email sending can be added later.
     alert("Submitting cart:\n" + cart.map(item => `${item.qty} x ${item.title} (${item.size})`).join('\n'));
     localStorage.removeItem('cart');
@@ -161,9 +160,41 @@ window.submitCart = function() {
         alert("Cart is empty!");
         return;
     }
-    alert("Submitting cart:\n" + cart.map(item => `${item.qty} x ${item.title} (${item.size})`).join('\n'));
-    localStorage.removeItem('cart');
-    closeCart();
+
+    // Prepare orders array for EmailJS template
+    const orders = cart.map(item => {
+    // Find the card object for this item
+    const card = window.cards.find(c => c.title === item.title);
+    return {
+        name: item.title + ' (' + item.size + ')',
+        units: item.qty,
+        img: card ? card.img : '' // Add image URL
+    };
+});
+
+    // Generate a random order ID (or use a better method if you have one)
+    const order_id = Date.now();
+
+    // Example cost object (replace with your actual calculation)
+    
+
+    // Get customer email (you may want to collect this from a form)
+    const email = prompt("Enter your email for order confirmation:");
+
+    const templateParams = {
+        email: email,
+        order_id: order_id,
+        orders: orders
+    };
+
+    emailjs.send('service_j4ldpce', 'template_z6m80gm', templateParams)
+        .then(function(response) {
+            alert('Cart submitted! We will contact you soon.');
+            localStorage.removeItem('cart');
+            closeCart();
+        }, function(error) {
+            alert('Failed to submit cart. Please try again.');
+        });
 };
 
 // Attach openCart to the button
@@ -285,10 +316,8 @@ document.getElementById('close-detail-card').onclick = function() {
 window.onpopstate = function(event) {
     const hash = window.location.hash;
     if (hash.startsWith('#product-')) {
-        const idx = parseInt(hash.replace('#product-', ''), 10);
-        if (!isNaN(idx) && window.cards && window.cards[idx]) {
-            window.showProductModal(idx);
-        }
+        const productId = hash.replace('#product-', '');
+        window.showProductModal(productId); // Pass productId directly
     } else {
         document.getElementById('product-detail-card').style.display = 'none';
         document.getElementById('features-wrapper').style.display = 'block';
@@ -296,8 +325,10 @@ window.onpopstate = function(event) {
 };
 
 
-window.showProductModal = function(idx) {
-    const card = window.cards[idx];
+window.showProductModal = function(productId) {
+    const card = window.cards.find(c => c.productId === productId);
+    if (!card) return; // Handle case where productId is invalid
+
     document.getElementById('detail-img').src = card.img;
     document.getElementById('detail-title').textContent = card.title;
     document.getElementById('detail-subtitle').textContent = card.subtitle;
@@ -306,8 +337,8 @@ window.showProductModal = function(idx) {
     document.getElementById('features-wrapper').style.display = 'none'; // Hide product cards
     document.getElementById('product-detail-card').scrollIntoView({ behavior: 'smooth' });
 
-    // Push state to URL (e.g., #product-2)
-    history.pushState({ productIdx: idx }, '', `#product-${idx}`);
+    // Push state to URL using productId
+    history.pushState({ productId: card.productId }, '', `#product-${card.productId}`);
 };
 
 document.getElementById('close-detail-card').onclick = function() {
