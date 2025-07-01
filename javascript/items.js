@@ -89,15 +89,19 @@ fetch('javascript/products_1.json')
 window.addToCart = function(idx) {
     const size = document.getElementById(`size-val-${idx}`).value;
     const qty = document.getElementById(`qty-val-${idx}`).textContent;
+    console.log(cards[idx].img);
     const item = {
         title: cards[idx].title,
         size,
         qty,
+        img: cards[idx].img, // Use the image from the card
+        productId: cards[idx].productId // Store product ID for reference
     };
     let cart = JSON.parse(localStorage.getItem('cart') || '[]');
     cart.push(item);
     localStorage.setItem('cart', JSON.stringify(cart));
     alert(`${item.qty} x ${item.title} (${item.size}) added to cart!`);
+    updateCartTooltip();
 }
 
 // Simple cart display and submit
@@ -131,13 +135,16 @@ window.openCart = function() {
         cartItemsDiv.innerHTML = "<p>Your cart is empty.</p>";
     } else {
         cartItemsDiv.innerHTML = cart.map((item, idx) => `
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:6px;">
-                <span style="font-size:1rem;">${item.qty} x ${item.title} (${item.size})</span>
-                <button onclick="removeFromCart(${idx})" title="Remove" style="background:none; border:none; color:#222; font-size:1.1rem; cursor:pointer; margin-left:10px;">
-    <i class="fa fa-trash"></i>
-</button>
-            </div>
-        `).join('');
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:6px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+            <img src="${item.img}" alt="${item.title}" style="width:38px; height:38px; object-fit:contain; border-radius:4px; background:#fafafa; border:1px solid #eee;">
+            <span style="font-size:1rem;">${item.qty} x ${item.title} (${item.size})</span>
+        </div>
+        <button onclick="removeFromCart(${idx})" title="Remove" style="background:none; border:none; color:#222; font-size:1.1rem; cursor:pointer; margin-left:10px;">
+            <i class="fa fa-trash"></i>
+        </button>
+    </div>
+`).join('');
     }
     overlay.style.display = "block";
 };
@@ -152,50 +159,52 @@ window.removeFromCart = function(idx) {
     cart.splice(idx, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
     openCart();
+    updateCartTooltip();
 };
 
-window.submitCart = function() {
-    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    if(cart.length === 0) {
-        alert("Cart is empty!");
-        return;
-    }
+// window.submitCart = function() {
+//     let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+//     if(cart.length === 0) {
+//         alert("Cart is empty!");
+//         return;
+//     }
 
-    // Prepare orders array for EmailJS template
-    const orders = cart.map(item => {
-    // Find the card object for this item
-    const card = window.cards.find(c => c.title === item.title);
-    return {
-        name: item.title + ' (' + item.size + ')',
-        units: item.qty,
-        img: card ? card.img : '' // Add image URL
-    };
-});
+//     // Prepare orders array for EmailJS template
+//     const orders = cart.map(item => {
+//     // Find the card object for this item
+//     const card = window.cards.find(c => c.title === item.title);
+//     return {
+//         name: item.title + ' (' + item.size + ')',
+//         units: item.qty,
+//         img: card ? card.img : '' // Add image URL
+//     };
+// });
 
-    // Generate a random order ID (or use a better method if you have one)
-    const order_id = Date.now();
+//     // Generate a random order ID (or use a better method if you have one)
+//     const order_id = Date.now();
 
-    // Example cost object (replace with your actual calculation)
+//     // Example cost object (replace with your actual calculation)
     
 
-    // Get customer email (you may want to collect this from a form)
-    const email = prompt("Enter your email for order confirmation:");
+//     // Get customer email (you may want to collect this from a form)
+//     const email = prompt("Enter your email for order confirmation:");
 
-    const templateParams = {
-        email: email,
-        order_id: order_id,
-        orders: orders
-    };
+//     const templateParams = {
+//         email: email,
+//         order_id: order_id,
+//         orders: orders
+//     };
 
-    emailjs.send('service_j4ldpce', 'template_z6m80gm', templateParams)
-        .then(function(response) {
-            alert('Cart submitted! We will contact you soon.');
-            localStorage.removeItem('cart');
-            closeCart();
-        }, function(error) {
-            alert('Failed to submit cart. Please try again.');
-        });
-};
+//     emailjs.send('service_j4ldpce', 'template_z6m80gm', templateParams)
+//         .then(function(response) {
+//             alert('Cart submitted! We will contact you soon.');
+//             localStorage.removeItem('cart');
+//             closeCart();
+//         }, function(error) {
+//             alert('Failed to submit cart. Please try again.');
+//         });
+// };
+
 
 // Attach openCart to the button
 // document.addEventListener('DOMContentLoaded', function() {
@@ -223,8 +232,123 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
     }
-});
 
+    document.getElementById('cart-details-form').onsubmit = function(e) {
+        e.preventDefault();
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        if(cart.length === 0) {
+            alert("Cart is empty!");
+            return;
+        }
+        const form = e.target;
+        const orders = cart.map(item => {
+            const card = window.cards.find(c => c.title === item.title);
+            return {
+                name: item.title,
+                size: item.size,
+                units: item.qty,
+                img: card ? card.img : ''
+            };
+        });
+        const order_id = Date.now();
+        const templateParams = {
+            name: form.name.value,
+            email: form.email.value,
+            country: form.country.value,
+            phone: form.phone.value,
+            whatsapp: form.whatsapp.value,
+            order_id: order_id,
+            orders: orders
+        };
+
+        emailjs.send('service_j4ldpce', 'template_z6m80gm', templateParams)
+            .then(function(response) {
+                document.getElementById('success-modal').style.display = 'flex';
+                localStorage.removeItem('cart');
+                document.getElementById('cart-form-modal').style.display = 'none';
+                form.reset();
+                closeCart();
+                updateCartTooltip();
+            }, function(error) {
+                alert('Failed to submit cart. Please try again.');
+            });
+    };
+
+    document.getElementById('close-cart-form').onclick = function() {
+        document.getElementById('cart-form-modal').style.display = 'none';
+    };
+
+    document.getElementById('cart-form-modal').onclick = function(e) {
+        if (e.target === this) this.style.display = 'none';
+    };
+    var closeSuccessBtn = document.getElementById('close-success-modal');
+    if (closeSuccessBtn) {
+        closeSuccessBtn.onclick = function() {
+            document.getElementById('success-modal').style.display = 'none';
+        };
+    }
+    updateCartTooltip();
+});
+window.submitCart = function() {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    if(cart.length === 0) {
+        alert("Cart is empty!");
+        return;
+    }
+    // Show the modal form
+    document.getElementById('cart-form-modal').style.display = 'flex';
+    updateCartTooltip();
+};
+
+// Show success modal
+document.getElementById('success-modal').style.display = 'flex';
+
+// Optional: Hide the cart form/modal if open
+document.getElementById('cart-form-modal').style.display = 'none';
+
+// Close modal on click of X
+document.getElementById('close-success-modal').onclick = function() {
+  document.getElementById('success-modal').style.display = 'none';
+};
+
+
+// document.getElementById('cart-details-form').onsubmit = function(e) {
+//     e.preventDefault();
+//     let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+//     if(cart.length === 0) {
+//         alert("Cart is empty!");
+//         return;
+//     }
+//     const form = e.target;
+//     const orders = cart.map(item => {
+//         const card = window.cards.find(c => c.title === item.title);
+//         return {
+//             name: item.title + ' (' + item.size + ')',
+//             units: item.qty,
+//             img: card ? card.img : ''
+//         };
+//     });
+//     const order_id = Date.now();
+//     const templateParams = {
+//         name: form.name.value,
+//         email: form.email.value,
+//         phone: form.phone.value,
+//         whatsapp: form.whatsapp.value,
+//         order_id: order_id,
+//         orders: orders.map(o => `${o.units} x ${o.name}`).join('\n')
+//     };
+
+//     emailjs.send('service_j4ldpce', 'template_z6m80gm', templateParams)
+//         .then(function(response) {
+//             alert('Cart submitted! We will contact you soon.');
+//             localStorage.removeItem('cart');
+//             document.getElementById('cart-form-modal').style.display = 'none';
+//             form.reset();
+//             closeCart();
+//         }, function(error) {
+//             alert('Failed to submit cart. Please try again.');
+//         });
+// };
 function selectCategory(btn, category) {
   // Remove 'current' from all nav items
   document.querySelectorAll('#nav .nav-list li').forEach(li => li.classList.remove('current'));
@@ -238,17 +362,24 @@ function selectCategory(btn, category) {
 window.toggleDropdown = function(btn) {
   console.log('Toggling dropdown for window:', btn);
   const li = btn.parentElement;
+  const dropdown = li.querySelector('.dropdown-menu');
   const wasOpen = li.classList.contains('open');
   // Close all other dropdowns
-  document.querySelectorAll('#nav .more-dropdown.open').forEach(el => el.classList.remove('open'));
+  document.querySelectorAll('#nav .more-dropdown.open').forEach(el => {
+    el.classList.remove('open');
+    const menu = el.querySelector('.dropdown-menu');
+    if (menu) menu.style.display = ''; // Remove any inline style
+  });
   // Toggle this one
   if (!wasOpen) {
     li.classList.add('open');
+    if (dropdown) dropdown.style.display = ''; // Remove any inline style
     // Use setTimeout to avoid immediate close from the same click
     setTimeout(() => {
       function handler(e) {
         if (!li.contains(e.target)) {
           li.classList.remove('open');
+          if (dropdown) dropdown.style.display = '';
           document.removeEventListener('click', handler);
         }
       }
@@ -425,3 +556,26 @@ document.querySelectorAll('#nav ul li a').forEach(link => {
     this.parentElement.classList.add('current');
   });
 });
+
+function submitCart() {
+  document.getElementById('cart-form-modal').style.display = 'flex';
+}
+
+function updateCartTooltip() {
+  const cartBtn = document.getElementById('open-cart-btn');
+  const badge = document.getElementById('cart-count-badge');
+  let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  if (cartBtn) {
+    if (cart.length === 0) {
+      cartBtn.title = "Cart is empty";
+    } else if (cart.length === 1) {
+      cartBtn.title = "1 item in cart";
+    } else {
+      cartBtn.title = cart.length + " items in cart";
+    }
+  }
+  if (badge) {
+    badge.textContent = cart.length;
+    badge.style.display = cart.length ? "inline-block" : "none";
+  }
+}

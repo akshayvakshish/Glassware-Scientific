@@ -65,6 +65,7 @@
     <li class="cart-nav">
       <span id="open-cart-btn" class="floating-cart-btn" title="Cart">
         <i class="fa fa-shopping-cart"></i>
+		<span id="cart-count-badge" style="position:absolute;top:1px;right:-10px;background:#2688dd;color:#fff;font-size:0.6em;padding:2px 6px;border-radius:50%;display:none;"></span>
       </span>
     </li>
 
@@ -264,7 +265,7 @@
 <div id="cart-blur-bg" style="display:none; position:fixed; inset:0; z-index:9998; backdrop-filter: blur(2px); background:rgba(0,0,0,0.06);"></div>
 <div id="cart-overlay"
     style="display:none; position:fixed; top:70px; right:24px; width:92vw; max-width:380px; background:#fff; border:1px solid #ccc; box-shadow:0 2px 18px rgba(0,0,0,0.22); z-index:9999; padding:2vw 2vw 2vw 2vw; border-radius:1.2vw; box-sizing:border-box;">
-    <h3 style="margin-top:0; margin-bottom:3vw; font-size:1.0rem;">Your Cart</h3>
+    <!-- <h3 style="margin-top:0; margin-bottom:3vw; font-size:1.0rem;">Your Cart</h3> -->
     <div id="cart-items"></div>
     <div style="display:flex; justify-content: flex-end; gap:3vw; margin-top:3vw;">
         <span onclick="submitCart()" class="cart-modal-icon" title="Submit" style="cursor:pointer;">
@@ -288,6 +289,33 @@
     <h2 id="modal-title"></h2>
     <p id="modal-subtitle"></p>
     <p id="modal-desc"></p>
+  </div>
+</div>
+<!-- Cart Submission Form Modal -->
+<div id="cart-form-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:100000; align-items:center; justify-content:center;">
+  <form id="cart-details-form" style="background:#fff; padding:24px; border-radius:8px; max-width:90vw; width:350px; margin:auto; position:relative;">
+    <span id="close-cart-form" style="position:absolute; top:10px; right:16px; font-size:2rem; cursor:pointer;">&times;</span>
+    <h3>Enter Your Details</h3>
+	
+    <label>Name:<br><input type="text" name="name" required style="width:100%;"></label><br>
+    <label>Email:<br><input type="email" name="email" required style="width:100%;"></label><br>
+	<label>Country:<br>
+  <select name="country" id="country-select" required style="width:100%;height:32px;">
+    <option value="">Select Country</option>
+  </select>
+</label><br>
+    <label>Phone No:<br><input type="tel" name="phone" required style="width:100%;"></label><br>
+    <label>WhatsApp No:<br><input type="text" name="whatsapp" required style="width:100%;"></label><br>
+	
+    <button type="submit" style="width:100%;padding:10px 0;">Submit</button>
+  </form>
+</div>
+
+<div id="success-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.35); z-index:100001; align-items:center; justify-content:center;">
+  <div style="background:#fff; padding:32px 24px; border-radius:10px; max-width:90vw; width:340px; margin:auto; text-align:center; box-shadow:0 2px 16px rgba(0,0,0,0.10); position:relative;">
+    <span id="close-success-modal" style="position:absolute; top:10px; right:16px; font-size:2rem; cursor:pointer;">&times;</span>
+    <h2 style="margin-bottom:12px;">Success!</h2>
+    <p>Your order request has been submitted.</p>
   </div>
 </div>
 
@@ -326,6 +354,21 @@ dots.forEach((dot, i) => {
         publicKey: "XKKIepyVYX_bcUfzC",
       });
    })();
+</script>
+<script>
+const countryList = [
+  "India", "United States", "United Kingdom", "Australia", "Canada", "Germany", "France", "Singapore", "Japan", "China", "Brazil", "South Africa", "Russia", "Italy", "Spain", "Netherlands", "Switzerland", "Sweden", "Norway", "Denmark", "Finland", "Mexico", "New Zealand", "Turkey", "UAE", "Saudi Arabia", "Indonesia", "Malaysia", "Thailand", "Philippines", "Vietnam", "Pakistan", "Bangladesh", "Egypt", "Nigeria", "Argentina", "Chile", "Colombia", "Belgium", "Austria", "Poland", "Portugal", "Greece", "Ireland", "Czech Republic", "Hungary", "Romania", "Israel", "South Korea", "Hong Kong", "Other"
+];
+
+const countrySelect = document.getElementById('country-select');
+if (countrySelect) {
+  countryList.forEach(country => {
+    const opt = document.createElement('option');
+    opt.value = country;
+    opt.textContent = country;
+    countrySelect.appendChild(opt);
+  });
+}
 </script>
 </body>
 
