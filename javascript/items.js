@@ -522,14 +522,14 @@ document.getElementById('close-detail-card').onclick = function() {
     history.pushState({}, '', window.location.pathname); // Remove hash
 };
 
-window.incrementQty = function(idx) {
+function incrementQty(idx) {
     const span = document.getElementById(`qty-val-${idx}`);
     let val = parseInt(span.textContent, 10);
     if (val < 10) val++;
     span.textContent = val;
 };
 
-window.decrementQty = function(idx) {
+function decrementQty (idx) {
     const span = document.getElementById(`qty-val-${idx}`);
     let val = parseInt(span.textContent, 10);
     if (val > 1) val--;
