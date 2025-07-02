@@ -261,7 +261,8 @@ document.addEventListener('DOMContentLoaded', function() {
             orders: orders
         };
 
-        emailjs.send('service_j4ldpce', 'template_z6m80gm', templateParams)
+        // emailjs.send('service_j4ldpce', 'template_z6m80gm', templateParams)
+        emailjs.send('service_z6haeg9', 'template_48q6tae', templateParams)
             .then(function(response) {
                 document.getElementById('success-modal').style.display = 'flex';
                 localStorage.removeItem('cart');
