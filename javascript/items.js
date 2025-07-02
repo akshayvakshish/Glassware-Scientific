@@ -389,7 +389,7 @@ window.toggleDropdown = function(btn) {
   }
 };
 
-window.filterCategory = function(category) {
+function filterCategory (category) {
     const featuresRow = document.getElementById('features-row');
     featuresRow.innerHTML = '';
     window.cards
